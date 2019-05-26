@@ -12,6 +12,7 @@
 if [ ! -f /usr/bin/xdotool ]
 then
 echo "xdotool is required, please install it before running this script"
+exit
 fi
 
 ##################
