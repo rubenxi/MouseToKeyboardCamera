@@ -53,7 +53,8 @@ then
 unclutteractive=1
 read -p "Enter key for X_BUTTON (RIGHT CLICK): " x_button
 read -p "Enter key for A_BUTTON (LEFT CLICK): " a_button
-/usr/bin/unclutter -idle 0 -jitter 100000000000 &
+/usr/bin/unclutter -idle 0 -jitter 100000000000 & 2>/dev/null
+
 ./mouseclick $x_button $a_button &
 fi
 
@@ -113,7 +114,7 @@ then
  if [ $var -gt 10000000 ]
  then
  killall /usr/bin/unclutter 
- /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
+ /usr/bin/unclutter -idle 0 -jitter 1000000000000000 & 2>/dev/null
  var=0
  fi
 fi
