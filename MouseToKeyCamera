@@ -12,7 +12,6 @@
 if [ ! -f /usr/bin/xdotool ]
 then
 echo "xdotool is required, please install it before running this script"
-exit
 fi
 
 ##################
@@ -53,11 +52,24 @@ then
 unclutteractive=1
 read -p "Enter key for X_BUTTON (RIGHT CLICK): " x_button
 read -p "Enter key for A_BUTTON (LEFT CLICK): " a_button
-/usr/bin/unclutter -idle 0 -jitter 100000000000 & 2>/dev/null
-
+/usr/bin/unclutter -idle 0 -jitter 100000000000 &
 ./mouseclick $x_button $a_button &
 fi
 
+
+##################
+#Set Speed       #
+##################
+
+
+echo "##############################################"
+echo "Enter number of seconds to wait between keydown and keyup: " 
+
+read -p "Press just Enter to use Default (0.001): " delay
+if [ -z "$delay" ]
+then
+delay=0.001
+fi
 
 ##################
 #Get screen size #
@@ -114,7 +126,7 @@ then
  if [ $var -gt 10000000 ]
  then
  killall /usr/bin/unclutter 
- /usr/bin/unclutter -idle 0 -jitter 1000000000000000 & 2>/dev/null
+ /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
  var=0
  fi
 fi
@@ -152,7 +164,7 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     while [ $previous -ne $current ]
     do
-    sleep 0.001
+    sleep $delay
     eval $(xdotool getmouselocation --shell)
     previous=$current
     current=$X
@@ -169,7 +181,7 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     while [ $previous -ne $current ]
     do
-    sleep 0.001
+    sleep $delay
     eval $(xdotool getmouselocation --shell)
     previous=$current
     current=$X
@@ -186,7 +198,7 @@ eval $(xdotool getmouselocation --shell)
     current=$Y
     while [ $previous -ne $current ]
     do
-    sleep 0.001
+    sleep $delay
     eval $(xdotool getmouselocation --shell)
     previous=$current
     current=$Y
@@ -203,7 +215,7 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     while [ $previous -ne $current ]
     do
-    sleep 0.001
+    sleep $delay
     eval $(xdotool getmouselocation --shell)
     previous=$current
     current=$X
