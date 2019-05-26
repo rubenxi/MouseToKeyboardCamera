@@ -1,7 +1,7 @@
 # MouseToKeyboardCamera
 Simple bash (and c) script which allow you to use mouse as joystick in emulators or games with no mouse support in Linux.
 
-Script in bash and c to get mouse movement and turn it into a key click.
+It gets mouse movement and turn it into a key click.
 It requires xdotool.
 
 Optionally, if you want to hide the mouse and click while using the script, you can install unclutter and the script will ask you which keys to use when clicking.
