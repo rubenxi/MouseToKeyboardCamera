@@ -5,6 +5,9 @@
 #include <unistd.h>
 #include <signal.h>
 
+// Compile with "gcc -lX11 mouseclick.c -o mouseclick"
+
+
 
 void exhandler(int ex) {
    system ("killall mouseclick");
@@ -141,23 +144,7 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
            break;
                         }
                     }
-        watch=0;
-    system("xdotool key C L I C K space A space K E Y space I N space M O U S E space F O R space M I D D L E space B U T T O N  ");
-    
-    sleep(1);
-            while (watch == 0){
-                     XNextEvent(display, &xevent);
-     switch (xevent.type) {
-             
-       case ButtonPress:
-           centroid = xevent.xbutton.button;
-           watch = 1;
-    system ("xdotool key Return");
-    system("xdotool key D O N E ");
-    system ("xdotool key Return");
-           break;
-                        }
-                    }
+     
         watch=0;
     system("xdotool key C L I C K space A space K E Y space I N space M O U S E space F O R space W H E E L space U P space B U T T O N  ");
     
@@ -167,11 +154,13 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
      switch (xevent.type) {
              
        case ButtonPress:
+            
            ruedaarribaid = xevent.xbutton.button;
            watch = 1;
     system ("xdotool key Return");
     system("xdotool key D O N E ");
     system ("xdotool key Return");
+            
            break;
                         }
                     }
@@ -194,7 +183,29 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
            break;
                         }
                     }
+                    
+    watch=0;
+    system("xdotool key C L I C K space A space K E Y space I N space M O U S E space F O R space M I D D L E space B U T T O N  ");
+    
+    sleep(1);
+            while (watch == 0){
+                     XNextEvent(display, &xevent);
+     switch (xevent.type) {
+             
+       case ButtonPress:
+           if ( xevent.xbutton.button != ruedaabajoid && xevent.xbutton.button != ruedaarribaid ){
+           centroid = xevent.xbutton.button;
+           watch = 1;
+    system ("xdotool key Return");
+    system("xdotool key D O N E ");
+    system ("xdotool key Return");
+           }
+           break;
+                        }
+                    }
         watch=0;
+        
+        
     system("xdotool key C L I C K space A space K E Y space I N space M O U S E space F O R space E X T R A B U T T O N 1 space B U T T O N  ");
     
     sleep(1);
@@ -203,13 +214,13 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
      switch (xevent.type) {
              
        case ButtonPress:
-           if (xevent.xbutton.button != ruedaabajoid){
+            if ( xevent.xbutton.button != ruedaabajoid && xevent.xbutton.button != ruedaarribaid ){
            botonlateral1id = xevent.xbutton.button;
            watch = 1;
     system ("xdotool key Return");
     system("xdotool key D O N E ");
     system ("xdotool key Return");
-           }
+            }
            break;
                         }
                     }
@@ -223,11 +234,13 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
      switch (xevent.type) {
              
        case ButtonPress:
+              if ( xevent.xbutton.button != ruedaabajoid && xevent.xbutton.button != ruedaarribaid ){
            botonlateral2id = xevent.xbutton.button;
            watch = 1;
     system ("xdotool key Return");
     system("xdotool key D O N E ");
     system ("xdotool key Return");
+              }
            break;
                         }
                     }
