@@ -20,8 +20,13 @@ void exhandler(int ex) {
 int main(int argc, char *argv[])
 {
         signal(SIGINT, exhandler);
-        
-        system("xdotool key W E L C O M E space T O space M O U S E C L I C K Return N O T E space T H A T space T H I S space I S space A space W I P space S C R I P T space S O space P L E A S E space D O N T space C L I C K space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O comma space A N D space T R Y space N O T space T O space M O V E space T H E space M O U S E space W H I L E space C O N F I G U R I N G space C L I C K S Return");
+        if (argc != 8 && argc != 3){
+        system("xdotool key I N C O R R E C T space A R G U M E N T S space P L E A S E space P A S S space 2 space O R space 7 space L E T T E R S space T O space M O U S E C L I C K key Return");
+        system ("killall mouseclick");
+        kill(getpid(), 1);
+        }
+        sleep (1);
+        system("xdotool key W E L C O M E space T O space M O U S E C L I C K Return N O T E space T H A T space T H I S space I S space A space W I P space S C R I P T space S O space P L E A S E space D O N T space C L I C K space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O comma space A N D space T R Y space N O T space T O space M O V E space T H E space M O U S E space W H I L E space C O N F I G U R I N G space C L I C K S space A N D space D O N T space D O space C T R L C space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O key Return");
     
     sleep (3);
     system("xdotool key o sleep 1 key o sleep 1 key o sleep 1 key Return");
