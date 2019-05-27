@@ -5,7 +5,7 @@ It gets mouse movement and turn it into a key click.
 It requires xdotool.
 
 
-It supports up to 7 mouse buttons (may be increased in the future) from 2.0 version. 1.2 version reccommended if you want to use only two clicks due to the tedious of configuring more buttons in latest versions.
+It supports up to 7 mouse buttons (may be increased in the future) from 2.0 version. 1.2 version is recommended if you want to use only two clicks due to the tedious of configuring more buttons in latest versions.
 
 Optionally, if you want to hide the mouse and click while using the script, you can install unclutter and the script will ask you which keys to use when clicking.
 
