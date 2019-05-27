@@ -149,7 +149,7 @@ Yaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 let "Xaxis=Xaxis/2"
 let "Yaxis=Yaxis/2"
 
-if [ $Xaxis -eq 0 ] || [ $Xaxis -eq 0 ]
+if [ $Xaxis -lt 20 ] || [ $Yaxis -lt 20 ]
 then
 echo "Error al obtener datos de pantalla, configurando datos por defecto"
 Xaxis=100
