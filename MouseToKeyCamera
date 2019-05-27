@@ -27,8 +27,8 @@ function ctrl_c() {
         
         if [ $unclutteractive -eq 1 ]
         then
-        killall /usr/bin/unclutter 
-        killall mouseclick
+        killall /usr/bin/unclutter
+        killall mouseclick 
         fi
         exit
 }
@@ -79,8 +79,18 @@ echo "##############################################"
 #feature         #
 ##################
 
+
+
 if [ -f /usr/bin/unclutter ]
+
 then
+read -p "unclutter found, do you want to use it to map mouse clicks? y/n: " unc
+echo "##############################################"
+fi
+
+if [ -f /usr/bin/unclutter ] && [ $unc == 'y' ]
+then
+
 unclutteractive=1
 
 read -p "Enter key (just one letter) for X_BUTTON (LEFT CLICK): " x_button
@@ -123,6 +133,9 @@ echo "Starting mouseclick..."
 ./mouseclick $x_button $a_button &
 echo ""
 fi
+else 
+echo "DONE, CHANGE TO GAME TAB NOW"
+echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
 fi
 
 
@@ -131,11 +144,17 @@ fi
 #Get screen size #
 ##################
 
-Xaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+Xaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1) 
 Yaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 let "Xaxis=Xaxis/2"
 let "Yaxis=Yaxis/2"
 
+if [ $Xaxis -eq 0 ] || [ $Xaxis -eq 0 ]
+then
+echo "Error al obtener datos de pantalla, configurando datos por defecto"
+Xaxis=100
+Yaxis=100
+fi
 
 ##################
 #Center mouse    #
