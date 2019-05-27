@@ -80,10 +80,15 @@ echo "##############################################"
 read -p "Do you want to map mouse clicks? y/n: " mous
 echo "##############################################"
 
+unc=n
+
 if [ -f /usr/bin/unclutter ]
 
 then
 read -p "unclutter found, do you want to use it to make mouse invisible? y/n: " unc
+echo "##############################################"
+else
+echo "unclutter dont found, you cant hide the mouse"
 echo "##############################################"
 fi
 
