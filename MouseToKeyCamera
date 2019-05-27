@@ -74,24 +74,27 @@ echo "##############################################"
 
 ##################
 #Check unclutter #
-#if wants to     #
-#use click       #
-#feature         #
 ##################
 
 
+read -p "Do you want to map mouse clicks? y/n: " mous
+echo "##############################################"
 
 if [ -f /usr/bin/unclutter ]
 
 then
-read -p "unclutter found, do you want to use it to map mouse clicks? y/n: " unc
+read -p "unclutter found, do you want to use it to make mouse invisible? y/n: " unc
 echo "##############################################"
 fi
 
-if [ -f /usr/bin/unclutter ] && [ $unc == 'y' ]
+##################
+#If wants to use #
+#clicks          #
+##################
+
+if [ $mous == 'y' ]
 then
 
-unclutteractive=1
 
 read -p "Enter key (just one letter) for X_BUTTON (LEFT CLICK): " x_button
 echo "##############################################"
@@ -119,25 +122,31 @@ echo "##############################################"
 read -p "Enter key (just one letter) for SIDE DOWN BUTTON: " downsideb
 echo "##############################################"
 
-echo ""
 
-/usr/bin/unclutter -idle 0 -jitter 100000000000 &
+echo ""
 echo "Starting mouseclick..."
-./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb &
-echo ""
-
+./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb $unc &
 
 else
-/usr/bin/unclutter -idle 0 -jitter 100000000000 &
-echo "Starting mouseclick..."
-./mouseclick $x_button $a_button &
 echo ""
-fi
-else 
-echo "DONE, CHANGE TO GAME TAB NOW"
-echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
+echo "Starting mouseclick..."
+./mouseclick $x_button $a_button $unc &
+
 fi
 
+
+if [ $unc == 'y' ]
+then
+unclutteractive=1
+/usr/bin/unclutter -idle 0 -jitter 10000000000000 &
+fi
+
+else
+
+echo "DONE, CHANGE TO GAME TAB NOW"
+echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
+
+fi
 
 
 ##################
@@ -151,7 +160,7 @@ let "Yaxis=Yaxis/2"
 
 if [ $Xaxis -lt 20 ] || [ $Yaxis -lt 20 ]
 then
-echo "Error al obtener datos de pantalla, configurando datos por defecto"
+echo "Error getting screen size, configuring default values..."
 Xaxis=100
 Yaxis=100
 fi
