@@ -17,3 +17,6 @@ For speed it´s recommended to set default (0.001) to play Monster Hunter games 
 To exit the script, just do a tab change to the terminal the script is executing in, and do a ctrl+c.
 
 This script was designed and tested to being used when playng Monster Hunter XX in Citra, but can be used in any game which allow you to use keyboard but not mouse. It´s really useful if you don´t have a gamepad or just don´t want to use it.
+
+
+NOTE: If you get an error with mouseclick, please compile it yourself with "gcc -lX11 mouseclick.c -o mouseclick" and put the mouseclick file output in the same folder as MouseToKeyboardCamera.
