@@ -14,6 +14,24 @@ then
 echo "xdotool is required, please install it before running this script"
 fi
 
+
+##################
+#Ctrl+C action   #
+##################
+unclutteractive=0
+
+trap ctrl_c INT
+
+function ctrl_c() {
+        
+        if [ $unclutteractive -eq 1 ]
+        then
+        killall /usr/bin/unclutter 
+        killall mouseclick
+        fi
+        exit
+}
+
 ##################
 #Ask for keys    #
 ##################
@@ -22,22 +40,35 @@ echo "##############################################"
 echo "# Welcome to MouseToKeyCamera (Made by Azul) #"
 echo "##############################################"
 
+##################
+#Set Speed       #
+##################
 
+
+echo "##############################################"
+echo "Enter speed of camera (number of seconds to wait between keydown and keyup): " 
+
+read -p "Press just Enter to use Default (0.001): " delay
+if [ -z "$delay" ]
+then
+delay=0.001
+fi
+echo "##############################################"
+echo "##############################################"
 
 
 echo "########     Select your keys map:   #########"
 echo "##############################################"
 
 
-read -p "Enter key for RIGHT_BUTTON (RIGHT AXIS): " right_button
+read -p "Enter key (just one letter) for RIGHT_BUTTON (RIGHT AXIS): " right_button
 echo "##############################################"
-read -p "Enter key for LEFT_BUTTON (LEFT AXIS): " left_button
+read -p "Enter key (just one letter) for LEFT_BUTTON (LEFT AXIS): " left_button
 echo "##############################################"
-read -p "Enter key for UP_BUTTON (UP AXIS): " up_button
+read -p "Enter key (just one letter) for UP_BUTTON (UP AXIS): " up_button
 echo "##############################################"
-read -p "Enter key for DOWN_BUTTON (DOWN AXIS): " down_button
+read -p "Enter key (just one letter) for DOWN_BUTTON (DOWN AXIS): " down_button
 echo "##############################################"
-
 
 
 ##################
@@ -46,73 +77,54 @@ echo "##############################################"
 #use click       #
 #feature         #
 ##################
-unclutteractive=0
+
 if [ -f /usr/bin/unclutter ]
 then
 unclutteractive=1
-read -p "Enter key for X_BUTTON (RIGHT CLICK): " x_button
-read -p "Enter key for A_BUTTON (LEFT CLICK): " a_button
 
-#read -p "Enter id for RIGHT CLICK. Press just enter to default (1): " rightid
-#if [ -z "$rightid" ]
-#then
-#rightid=1
-#fi
-#read -p "Enter id for LEFT CLICK. Press just enter to default (3): " leftid
-#if [ -z "$leftid" ]
-#then
-#leftid=3
-#fi
-
-#read -p "Do you want to configure extra buttons? y/n: " yes
-#if [ $yes == 'y' ]
-#then
-
-read -p "Enter key for MIDDLE CLICK: " midb
+read -p "Enter key (just one letter) for X_BUTTON (LEFT CLICK): " x_button
+echo "##############################################"
+read -p "Enter key (just one letter) for A_BUTTON (RIGHT CLICK): " a_button
+echo "##############################################"
 
 
-read -p "Enter key for UP WHEEL: " upmb
+read -p "Do you want to configure extra buttons? y/n: " yes
 
+if [ $yes == 'y' ]
+then
+echo "##############################################"
+read -p "Enter key (just one letter) for MIDDLE CLICK: " midb
+echo "##############################################"
 
-read -p "Enter key for DOWN WHEEL: " downmb
+read -p "Enter key (just one letter) for UP WHEEL: " upmb
+echo "##############################################"
 
-
-read -p "Enter key for SIDE UP BUTTON: " upsideb
-
-
-read -p "Enter key for SIDE DOWN BUTTON: " downsideb
-
-
-
-/usr/bin/unclutter -idle 0 -jitter 100000000000 &
-
-echo "Starting mouseclick..."
-#if [ $yes == 'y' ]
-#then
-echo "click in mouse in order: left, right, middle button, up wheel, down wheel, extra button 1, extra button 2"
-./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb &
-echo "waiting..."
-sleep 10
-#else
-#./mouseclick $x_button $a_button $rightid $leftid &
-
-#fi
-fi
-
-
-##################
-#Set Speed       #
-##################
-
+read -p "Enter key (just one letter) for DOWN WHEEL: " downmb
 
 echo "##############################################"
-echo "Enter number of seconds to wait between keydown and keyup: " 
+read -p "Enter key (just one letter) for SIDE UP BUTTON: " upsideb
 
-read -p "Press just Enter to use Default (0.001): " delay
-if [ -z "$delay" ]
-then
-delay=0.001
+echo "##############################################"
+read -p "Enter key (just one letter) for SIDE DOWN BUTTON: " downsideb
+echo "##############################################"
+
+echo ""
+
+/usr/bin/unclutter -idle 0 -jitter 100000000000 &
+echo "Starting mouseclick..."
+./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb &
+echo ""
+
+
+else
+/usr/bin/unclutter -idle 0 -jitter 100000000000 &
+echo "Starting mouseclick..."
+./mouseclick $x_button $a_button &
+echo ""
 fi
+fi
+
+
 
 ##################
 #Get screen size #
@@ -131,22 +143,6 @@ let "Yaxis=Yaxis/2"
 xdotool mousemove $Xaxis $Yaxis
 
 
-##################
-#Ctrl+C action   #
-##################
-
-trap ctrl_c INT
-
-function ctrl_c() {
-        
-        if [ $unclutteractive -eq 1 ]
-        then
-        killall /usr/bin/unclutter 
-        killall mouseclick
-        fi
-        exit
-}
-
 var=0
 
 
@@ -158,21 +154,6 @@ while [ 1 -eq 1 ]; do
 current=0
 previous=0
 
-##################
-#Control         #
-#unclutter so    #
-#mouse stay hide #
-##################
-if [ $unclutteractive -eq 1 ]
-then
- let "var=var+1"
- if [ $var -gt 10000000 ]
- then
- killall /usr/bin/unclutter 
- /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
- var=0
- fi
-fi
 
              
 eval $(xdotool getmouselocation --shell)
