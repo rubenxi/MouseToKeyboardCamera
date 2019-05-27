@@ -7,7 +7,9 @@ It requires xdotool.
 
 It supports up to 7 mouse buttons (may be increased in the future) from 2.0 version. 1.2 version is recommended if you want to use only two clicks due to the tedious of configuring more buttons in latest versions.
 
-Optionally, if you want to hide the mouse and click while using the script, you can install unclutter and the script will ask you which keys to use when clicking.
+Optionally, if you want to map clicks of the mouse and while using the script, you can install unclutter and the script will ask you which keys to use when clicking.
+
+You can also decide if you want to use unclutter to hide mouse or not.
 
 You need to give execution permissions to both mouseclick and MouseToKeyCamera files with "sudo chmod +x ./mouseclick" and "sudo chmod +x ./MouseToKeyCamera".
 
