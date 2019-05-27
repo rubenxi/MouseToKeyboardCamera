@@ -52,8 +52,51 @@ then
 unclutteractive=1
 read -p "Enter key for X_BUTTON (RIGHT CLICK): " x_button
 read -p "Enter key for A_BUTTON (LEFT CLICK): " a_button
+
+#read -p "Enter id for RIGHT CLICK. Press just enter to default (1): " rightid
+#if [ -z "$rightid" ]
+#then
+#rightid=1
+#fi
+#read -p "Enter id for LEFT CLICK. Press just enter to default (3): " leftid
+#if [ -z "$leftid" ]
+#then
+#leftid=3
+#fi
+
+#read -p "Do you want to configure extra buttons? y/n: " yes
+#if [ $yes == 'y' ]
+#then
+
+read -p "Enter key for MIDDLE CLICK: " midb
+
+
+read -p "Enter key for UP WHEEL: " upmb
+
+
+read -p "Enter key for DOWN WHEEL: " downmb
+
+
+read -p "Enter key for SIDE UP BUTTON: " upsideb
+
+
+read -p "Enter key for SIDE DOWN BUTTON: " downsideb
+
+
+
 /usr/bin/unclutter -idle 0 -jitter 100000000000 &
-./mouseclick $x_button $a_button &
+
+echo "Starting mouseclick..."
+#if [ $yes == 'y' ]
+#then
+echo "click in mouse in order: left, right, middle button, up wheel, down wheel, extra button 1, extra button 2"
+./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb &
+echo "waiting..."
+sleep 10
+#else
+#./mouseclick $x_button $a_button $rightid $leftid &
+
+#fi
 fi
 
 
