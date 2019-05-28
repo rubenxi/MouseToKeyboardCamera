@@ -24,12 +24,14 @@ unclutteractive=0
 trap ctrl_c INT
 
 function ctrl_c() {
-        
-        if [ $unclutteractive -eq 1 ]
+
+        if [ $unclutteractive -eq 1 ] && [ $mous == 'n' ]
         then
-        killall /usr/bin/unclutter
-        killall mouseclick 
+       
+        killall unclutter
+        
         fi
+        
         exit
 }
 
@@ -106,6 +108,12 @@ echo "unclutter dont found, you cant hide the mouse"
 echo "##############################################"
 fi
 
+if [ $unc == 'y' ] 
+then
+unclutteractive=1
+/usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
+fi
+
 ##################
 #If wants to use #
 #clicks          #
@@ -167,11 +175,7 @@ fi
 
 else
 
-if [ $unc == 'y' ] 
-then
-unclutteractive=1
-/usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
-fi
+
 
 echo "DONE, CHANGE TO GAME TAB NOW"
 echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
@@ -179,12 +183,14 @@ echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
 fi
 
 
+
+
 ##################
 #Get screen size #
 ##################
 
-Xaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1) 
-Yaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+Xaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)  >>/dev/null 2>>/dev/null
+Yaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)  >>/dev/null 2>>/dev/null
 let "Xaxis=Xaxis/2"
 let "Yaxis=Yaxis/2"
 

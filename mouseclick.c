@@ -10,9 +10,12 @@
 
 
 void exhandler(int ex) {
-   system ("killall mouseclick");
-   system ("killall unclutter");
+
+
+
+   system ("killall unclutter >>/dev/null 2>>/dev/null" ) ;
    kill(getpid(), 1);
+   system ("killall mouseclick");
    
 }
 
@@ -296,7 +299,7 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
     
     
 
-    
+  
     
        while( 1 == 1 ) {
     
