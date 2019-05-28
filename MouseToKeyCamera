@@ -74,14 +74,27 @@ echo "##############################################"
 
 
 ##################
-#Check unclutter #
+#Check mouseclick#
 ##################
 
-
+if [ -f ./mouseclick ]
+then
 read -p "Do you want to map mouse clicks? y/n: " mous
 echo "##############################################"
+else
+echo "You dont have mouseclick here to map mouse clicks."
+echo "Download it from https://github.com/rubenxi/MouseToKeyboardCamera/tree/mouseclick"
+echo "Compile mouseclick.c with gcc -lX11 mouseclick.c -o mouseclick"
+echo "Place the output in the same folder as MouseToKeyboardCamera to use it."
+echo "##############################################"
+mous=n
+fi
 
 unc=n
+
+##################
+#Check unclutter #
+##################
 
 if [ -f /usr/bin/unclutter ]
 
@@ -130,6 +143,7 @@ read -p "Enter key (just one letter) for SIDE DOWN BUTTON: " downsideb
 echo "##############################################"
 
 
+
 echo ""
 echo "##############################################"
 echo "Starting mouseclick..."
@@ -143,19 +157,21 @@ echo "##############################################"
 echo "Starting mouseclick..."
 echo "##############################################"
 echo ""
-sleep 1
+
 ./mouseclick $x_button $a_button $unc &
 
 fi
 
 
-if [ $unc == 'y' ]
-then
-unclutteractive=1
-/usr/bin/unclutter -idle 0 -jitter 10000000000000 &
-fi
+
 
 else
+
+if [ $unc == 'y' ] 
+then
+unclutteractive=1
+/usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
+fi
 
 echo "DONE, CHANGE TO GAME TAB NOW"
 echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
@@ -190,8 +206,14 @@ var=0
 
 
 ##################
-#Infinite Loop   #
+#Infinite Loop 1 #
+#in case that use#
+#unclutter but   #
+#not mouseclick  #
 ##################
+   
+if [ $unc == 'y' ] && [ $mous != 'y' ]
+then
    
 while [ 1 -eq 1 ]; do
 current=0
@@ -237,7 +259,8 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     done
     xdotool keyup $right_button
-    
+    killall unclutter
+    /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
         ##################
         #LEFT            #
         ##################
@@ -254,7 +277,8 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     done
     xdotool keyup $left_button
-    
+    killall unclutter
+    /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
         ##################
         #UP              #
         ##################
@@ -271,7 +295,8 @@ eval $(xdotool getmouselocation --shell)
     current=$Y
     done
     xdotool keyup $up_button
-
+    killall unclutter
+    /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
         ##################
         #DOWN            #
         ##################
@@ -288,7 +313,8 @@ eval $(xdotool getmouselocation --shell)
     current=$X
     done
     xdotool keyup $down_button
-        
+    killall unclutter
+    /usr/bin/unclutter -idle 0 -jitter 1000000000000000 &
         ##################
         #END             #
         ##################
@@ -305,3 +331,126 @@ fi
 
    
 done
+
+ # Loop 1 end
+
+ 
+##################
+#Infinite Loop 2 #
+#in case that use#
+#unclutter and   #
+# mouseclick or  #
+#just mouseclick #
+##################
+
+else
+while [ 1 -eq 1 ]; do
+current=0
+previous=0
+
+
+             
+eval $(xdotool getmouselocation --shell)
+
+##################
+#Get value of    #
+#most moved axis #
+##################
+
+    right=`expr $X - $Xaxis`
+    left=`expr $Xaxis - $X`
+    up=`expr $Yaxis - $Y`
+    down=`expr $Y - $Yaxis`
+    
+    a=($right $left $up $down)
+
+    max=0
+    for v in ${a[@]}; do
+    if (( "$v" > "$max" )); then max=$v; fi; 
+    done
+
+    if [ $max -gt 0 ]
+    then
+
+        ##################
+        #RIGHT           #
+        ##################
+    
+    if [ $max -eq $right ]
+    then
+    xdotool keydown $right_button
+    current=$X
+    while [ $previous -ne $current ]
+    do
+    sleep $delay
+    eval $(xdotool getmouselocation --shell)
+    previous=$current
+    current=$X
+    done
+    xdotool keyup $right_button
+        ##################
+        #LEFT            #
+        ##################
+    
+    elif [ $max -eq $left ]
+    then
+    xdotool keydown $left_button
+    current=$X
+    while [ $previous -ne $current ]
+    do
+    sleep $delay
+    eval $(xdotool getmouselocation --shell)
+    previous=$current
+    current=$X
+    done
+    xdotool keyup $left_button
+        ##################
+        #UP              #
+        ##################
+    
+    elif [ $max -eq $up ]
+    then   
+    xdotool keydown $up_button
+    current=$Y
+    while [ $previous -ne $current ]
+    do
+    sleep $delay
+    eval $(xdotool getmouselocation --shell)
+    previous=$current
+    current=$Y
+    done
+    xdotool keyup $up_button
+        ##################
+        #DOWN            #
+        ##################
+     
+    elif [ $max -eq $down ]
+    then
+    xdotool keydown $down_button
+    current=$X
+    while [ $previous -ne $current ]
+    do
+    sleep $delay
+    eval $(xdotool getmouselocation --shell)
+    previous=$current
+    current=$X
+    done
+    xdotool keyup $down_button
+        ##################
+        #END             #
+        ##################
+    
+    fi
+    
+    
+    xdotool mousemove $Xaxis $Yaxis
+fi
+    #----------------------------------------------------
+         
+    #------------------------------------------------
+    
+
+   
+done
+
+fi
