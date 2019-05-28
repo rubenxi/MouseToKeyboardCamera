@@ -48,8 +48,9 @@ echo "##############################################"
 
 echo "##############################################"
 echo "Enter speed of camera (number of seconds to wait between keydown and keyup): " 
-
+echo ""
 read -p "Press just Enter to use Default (0.001): " delay
+echo ""
 if [ -z "$delay" ]
 then
 delay=0.001
@@ -108,6 +109,7 @@ echo "##############################################"
 
 
 read -p "Do you want to configure extra buttons? y/n: " yes
+echo "##############################################"
 
 if [ $yes == 'y' ]
 then
@@ -129,12 +131,19 @@ echo "##############################################"
 
 
 echo ""
+echo "##############################################"
 echo "Starting mouseclick..."
+echo "##############################################"
+echo ""
 ./mouseclick $x_button $a_button $midb $upmb $downmb $upsideb $downsideb $unc &
 
 else
 echo ""
+echo "##############################################"
 echo "Starting mouseclick..."
+echo "##############################################"
+echo ""
+sleep 1
 ./mouseclick $x_button $a_button $unc &
 
 fi

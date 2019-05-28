@@ -18,19 +18,25 @@ void exhandler(int ex) {
 
 
 int main(int argc, char *argv[])
-{
-        signal(SIGINT, exhandler);
+{   
+        signal(SIGINT, exhandler);  
+        
+        
         if (argc != 9 && argc != 4){
         system("xdotool key I N C O R R E C T space A R G U M E N T S space P L E A S E space P A S S space 2 space O R space 7 space L E T T E R S space A N D space S E T space T H E space L A S T space A R G U M E N T space T O space y space T O space U S E space U N C L U T T E R space A N D space M A K E space T H E space M O U S E space D I S A P P E A R space O R space n space T O space N O T key Return");
         system ("killall mouseclick");
         kill(getpid(), 1);
         }
         sleep (1);
-        system("xdotool key W E L C O M E space T O space M O U S E C L I C K Return N O T E space T H A T space T H I S space I S space A space W I P space S C R I P T space S O space P L E A S E space D O N T space C L I C K space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O comma space A N D space T R Y space N O T space T O space M O V E space T H E space M O U S E space W H I L E space C O N F I G U R I N G space C L I C K S space A N D space D O N T space D O space C T R L C space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O key Return");
+        system("xdotool key W E L C O M E space T O space M O U S E C L I C K Return N O T E space T H A T space T H I S space I S space A space W I P space S C R I P T space S O space P L E A S E space D O N T space C L I C K space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O comma space A N D space T R Y space N O T space T O space M O V E space T H E space M O U S E space W H I L E space C O N F I G U R I N G space C L I C K S space A N D space D O N T space P R E S S space C t r l C space B E F O R E space T H E space P R O G R A M space T O L D space Y O U space T O key Return");
     
     sleep (3);
     system("xdotool key o sleep 1 key o sleep 1 key o sleep 1 key Return");
 
+    
+    
+ 
+    
 
     char * unc9=argv[8]; 
     char * unc4=argv[3]; 
@@ -41,13 +47,21 @@ const char* str4 = unc4;
 int cmp9 = strcmp ("y", str9);
 int cmp4 = strcmp ("y", str4);
 
+if ( access( "/usr/bin/unclutter", F_OK ) != 0 ){
+ cmp9++;
+ cmp4++;
+  system("xdotool key Y O U space D O N T space H A V E space U N C L U T T E R comma space T H E space M O U S E space C A N T space B E space H I D D E N space key Return");
+      system("xdotool key o sleep 1 key o sleep 1 key o sleep 1 key Return");
+
+}
+
 
 
     
 
 //UNCLUTTER ACTIVATED:
 
-if ( (argc == 9 && cmp9 == 0 ) || (argc == 4 && cmp4 == 0) )    
+if ( (argc == 9 && cmp9 == 0 ) || (argc == 4 && cmp4 == 0)  )    
 {
     
     
@@ -271,7 +285,7 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
         watch=0;
     system("xdotool key C O N F I G U R A T I O N space F I N I S H E D key Return ");
     system("xdotool key C H A N G E space T O space G A M E space T A B space N O W key Return ");
-    system("xdotool key D O space A space C T R L space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
+    system("xdotool key D O space A space C t r l space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
     
     
     
@@ -503,7 +517,7 @@ sprintf(xdoAup, "xdotool keyup %s", a);
         watch=0;  
         system("xdotool key C O N F I G U R A T I O N space F I N I S H E D key Return ");
     system("xdotool key C H A N G E space T O space G A M E space T A B space N O W key Return ");
-    system("xdotool key D O space A space C T R L space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
+    system("xdotool key D O space A space C t r l space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
     
     
        while( 1 == 1 ) {
@@ -811,7 +825,7 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
         watch=0;
     system("xdotool key C O N F I G U R A T I O N space F I N I S H E D key Return ");
     system("xdotool key C H A N G E space T O space G A M E space T A B space N O W key Return ");
-    system("xdotool key D O space A space C T R L space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
+    system("xdotool key D O space A space C t r l space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
     
     
     
@@ -1029,7 +1043,7 @@ sprintf(xdoAup, "xdotool keyup %s", a);
         watch=0;  
         system("xdotool key C O N F I G U R A T I O N space F I N I S H E D key Return ");
     system("xdotool key C H A N G E space T O space G A M E space T A B space N O W key Return ");
-    system("xdotool key D O space A space C T R L space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
+    system("xdotool key D O space A space C t r l space C space I N space T H I S space W I N D O W space T O space E X I T key Return");
     
     
        while( 1 == 1 ) {
