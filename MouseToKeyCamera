@@ -175,7 +175,14 @@ fi
 
 else
 
-
+        if [ $unclutteractive -eq 1 ] && [ $mous == 'n' ]
+        then
+       echo "##############################################"
+       echo "##############################################"
+        echo "Using unclutter without mouseclick maping is not recommended as you will see the mouse disappearing and appearing while moving it. This is because of unclutter limitations and it won´t be fixed by now."
+       echo "##############################################" 
+       echo "##############################################"
+       fi
 
 echo "DONE, CHANGE TO GAME TAB NOW"
 echo "PRESS CTRL+C IN THIS WINDOWS TO STOP SCRIPT"
