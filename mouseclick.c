@@ -24,6 +24,10 @@ int main(int argc, char *argv[])
 {   
         signal(SIGINT, exhandler);  
         
+        if ( access( "/usr/bin/xdotool", F_OK ) != 0 ){
+        printf("xdotool not found. This script needs xdotool, please install it before running mouseclick");
+        kill(getpid(), 1);
+        }
         
         if (argc != 9 && argc != 4){
         system("xdotool key I N C O R R E C T space A R G U M E N T S space P L E A S E space P A S S space 2 space O R space 7 space L E T T E R S space A N D space S E T space T H E space L A S T space A R G U M E N T space T O space y space T O space U S E space U N C L U T T E R space A N D space M A K E space T H E space M O U S E space D I S A P P E A R space O R space n space T O space N O T key Return");
@@ -50,6 +54,8 @@ const char* str4 = unc4;
 int cmp9 = strcmp ("y", str9);
 int cmp4 = strcmp ("y", str4);
 
+
+
 if ( access( "/usr/bin/unclutter", F_OK ) != 0 ){
  cmp9++;
  cmp4++;
@@ -66,7 +72,7 @@ if ( access( "/usr/bin/unclutter", F_OK ) != 0 ){
 
 if ( (argc == 9 && cmp9 == 0 ) || (argc == 4 && cmp4 == 0)  )    
 {
-    
+   
     
       //Long version
    if ( argc == 9 ) {
@@ -314,55 +320,55 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
                 if (xevent.xbutton.button == izquierdaid) {
                     
                          system(xdoXdown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                 }
                     
                     
                
                    else if (xevent.xbutton.button ==  derechaid){
                          system(xdoAdown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                
                   else  if (xevent.xbutton.button ==  centroid){
                          system(xdomiddown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
        }
                     
                     
                 
                    else if (xevent.xbutton.button ==  ruedaarribaid){
                          system(xdowheelupdown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                         }
                     
                     
            
                   else  if (xevent.xbutton.button ==  ruedaabajoid){
                          system(xdowheeldowndown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                         }
                     
                     
               
                   else  if (xevent.xbutton.button ==  botonlateral1id){
                          system(xdoextra1down);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
             
                    else if (xevent.xbutton.button ==  botonlateral2id){
                          system(xdoextra2down);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
@@ -376,51 +382,51 @@ sprintf(xdoextra2up, "xdotool keyup %s", extra2);
                           
                    if (xevent.xbutton.button ==  izquierdaid){
                          system(xdoXup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                
                    else if (xevent.xbutton.button ==  derechaid){
                          system(xdoAup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                 else    if (xevent.xbutton.button ==  centroid){
                          system(xdomidup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                   else  if (xevent.xbutton.button ==  ruedaarribaid){
                          system(xdowheelupup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                   else  if (xevent.xbutton.button ==  ruedaabajoid){
                          system(xdowheeldownup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                    else if (xevent.xbutton.button ==  botonlateral1id){
                          system(xdoextra1up);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                    else if (xevent.xbutton.button ==  botonlateral2id){
                          system(xdoextra2up);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
@@ -536,16 +542,16 @@ sprintf(xdoAup, "xdotool keyup %s", a);
                 if (xevent.xbutton.button == izquierdaid) {
                     
                          system(xdoXdown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                 }
                     
                     
                
                    else if (xevent.xbutton.button ==  derechaid){
                          system(xdoAdown);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
 
@@ -558,16 +564,16 @@ sprintf(xdoAup, "xdotool keyup %s", a);
                           
                    if (xevent.xbutton.button ==  izquierdaid){
                          system(xdoXup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
                     
                
                    else if (xevent.xbutton.button ==  derechaid){
                          system(xdoAup);
-                system("killall unclutter");
-                system("/usr/bin/unclutter -idle 0 -jitter 100000000 &");
+                system("killall unclutter >>/dev/null 2>>/dev/null");
+                system("/usr/bin/unclutter -idle 0 -jitter 100000000 -ignore-scroll &");
                     }
                     
  
