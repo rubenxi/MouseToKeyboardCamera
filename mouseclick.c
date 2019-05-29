@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
         signal(SIGINT, exhandler);  
         
         if ( access( "/usr/bin/xdotool", F_OK ) != 0 ){
-        printf("xdotool not found. This script needs xdotool, please install it before running mouseclick");
-        kill(getpid(), 1);
+        printf("XDOTOOL NOT FOUND. THIS SCRIPT NEEDS XDOTOOL, PLEASE INSTALL IT BEFORE RUNNING MOUSECLICK\n");
+        exit (1);
         }
         
         if (argc != 9 && argc != 4){
