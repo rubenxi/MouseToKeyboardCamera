@@ -22,11 +22,13 @@ To use it, just execute
 > ./MouseToKeyCamera
 in a terminal opened in the script location where you have to put mouseclick too if you want to use unclutter to hide the mouse and click. When the script is executed, it asks you for keys to use and speed, and when you set them all, just do a tab change to the window of the game you want to play.
 
-## *Configure and exit*
+## *Configuration and exit*
 
-For speed it´s recommended to set default (0.001) to play Monster Hunter games in Citra, and set 0.01 to play Super Mario Odyssey in Yuzu.
+Just follow the steps that are listed in the terminal window when you execute the script. 
+When you have to enter a key, just type the key name and press Enter. Key names such as "Shift" or "Return" are listed in "Keys names" file, but for most keys (keyboard letters) just type the letter itself.
+For speed it´s recommended to set default (0.001) to play Monster Hunter games in Citra, and set 0.01 to play Super Mario Odyssey in Yuzu for example.
 
-To exit the script, just do a tab change to the terminal the script is executing in, and do a ctrl+c.
+To exit the script, just do a tab change (Alt+Tab) to the terminal the script is executing on, and click Ctrl+C.
 
 ## *Notes*
 
